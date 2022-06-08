@@ -74,7 +74,7 @@ onMounted(() => {
         v-model="inputQuery"
         @keyup.enter.native="getIpInfo"
         type="text"
-        class="mt-8 mb-5 px-6 py-3 w-[35%] rounded-l-xl focus:shadow focus:outline-none"
+        class="mt-8 mb-5 px-6 py-3 md:w-[35%] rounded-l-xl focus:shadow focus:outline-none"
         placeholder="Search any IP address or domain"
       />
       <button
@@ -89,45 +89,47 @@ onMounted(() => {
       </span>
 
       <section
-        class="bg-white mt-5 rounded-xl z-20 justify-around gap-5 py-5 md:p-6 grid md:grid-cols-4 relative max-w-5xl mx-auto shadow-xl text-left"
+        class="mx-5 bg-white mt-5 rounded-xl z-20 justify-around gap-3 md:gap-5 py-5 md:p-6 grid md:grid-cols-4 relative max-w-5xl md:mx-auto shadow-xl md:text-left"
       >
         <div class="md:border-r-2 border-gray-200 pr-4">
           <h4
-            class="text-gray-400 uppercase text-xs tracking-widest mb-3 font-medium"
+            class="text-gray-400 uppercase text-tiny md:text-xs tracking-widest mb-2 md:mb-3 font-medium"
           >
             IP Address
           </h4>
           <Loading v-if="loading" />
-          <p v-else class="text-xl font-medium">{{ ipInfo.ip }}</p>
+          <p v-else class="text-lg md:text-xl font-medium">{{ ipInfo.ip }}</p>
         </div>
         <div class="md:border-r-2 border-gray-200 pr-4">
           <h4
-            class="text-gray-400 uppercase text-xs tracking-widest mb-3 font-medium"
+            class="text-gray-400 uppercase text-tiny md:text-xs tracking-widest mb-2 md:mb-3 font-medium"
           >
             Location
           </h4>
           <Loading v-if="loading" />
-          <p v-else class="text-xl font-medium">
+          <p v-else class="text-lg md:text-xl font-medium">
             {{ ipInfo.city }}, {{ ipInfo.region }}, {{ ipInfo.country }}
           </p>
         </div>
         <div class="md:border-r-2 border-gray-200 pr-4">
           <h4
-            class="text-gray-400 uppercase text-xs tracking-widest mb-3 font-medium"
+            class="text-gray-400 uppercase text-tiny md:text-xs tracking-widest mb-2 md:mb-3 font-medium"
           >
             Timezone
           </h4>
           <Loading v-if="loading" />
-          <p v-else class="text-xl font-medium">UTC {{ ipInfo.timezone }}</p>
+          <p v-else class="text-lg md:text-xl font-medium">
+            UTC {{ ipInfo.timezone }}
+          </p>
         </div>
         <div class="pr-4">
           <h4
-            class="text-gray-400 uppercase text-xs tracking-widest mb-3 font-medium"
+            class="text-gray-400 uppercase text-tiny md:text-xs tracking-widest mb-2 md:mb-3 font-medium"
           >
             ISP
           </h4>
           <Loading v-if="loading" />
-          <p v-else class="text-xl font-medium">{{ ipInfo.isp }}</p>
+          <p v-else class="text-lg md:text-xl font-medium">{{ ipInfo.isp }}</p>
         </div>
       </section>
     </div>
