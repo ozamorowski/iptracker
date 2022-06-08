@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import { onMounted, ref } from 'vue'
 
-import Loading from './components/Loading.vue'
+import IpInfo from './components/IpInfo.vue'
 
 let map: L.Map
 let inputQuery = ref('')
@@ -88,53 +88,10 @@ onMounted(() => {
         Domain or IP not found.
       </span>
 
-      <section
-        class="mx-5 bg-white mt-5 rounded-xl z-20 justify-around gap-3 md:gap-5 py-5 md:p-6 grid md:grid-cols-4 relative max-w-5xl md:mx-auto shadow-xl md:text-left"
-      >
-        <div class="md:border-r-2 border-gray-200 pr-4">
-          <h4
-            class="text-gray-400 uppercase text-tiny md:text-xs tracking-widest mb-2 md:mb-3 font-medium"
-          >
-            IP Address
-          </h4>
-          <Loading v-if="loading" />
-          <p v-else class="text-lg md:text-xl font-medium">{{ ipInfo.ip }}</p>
-        </div>
-        <div class="md:border-r-2 border-gray-200 pr-4">
-          <h4
-            class="text-gray-400 uppercase text-tiny md:text-xs tracking-widest mb-2 md:mb-3 font-medium"
-          >
-            Location
-          </h4>
-          <Loading v-if="loading" />
-          <p v-else class="text-lg md:text-xl font-medium">
-            {{ ipInfo.city }}, {{ ipInfo.region }}, {{ ipInfo.country }}
-          </p>
-        </div>
-        <div class="md:border-r-2 border-gray-200 pr-4">
-          <h4
-            class="text-gray-400 uppercase text-tiny md:text-xs tracking-widest mb-2 md:mb-3 font-medium"
-          >
-            Timezone
-          </h4>
-          <Loading v-if="loading" />
-          <p v-else class="text-lg md:text-xl font-medium">
-            UTC {{ ipInfo.timezone }}
-          </p>
-        </div>
-        <div class="pr-4">
-          <h4
-            class="text-gray-400 uppercase text-tiny md:text-xs tracking-widest mb-2 md:mb-3 font-medium"
-          >
-            ISP
-          </h4>
-          <Loading v-if="loading" />
-          <p v-else class="text-lg md:text-xl font-medium">{{ ipInfo.isp }}</p>
-        </div>
-      </section>
+      <IpInfo :ipInfo="ipInfo" :loading="loading" />
     </div>
   </header>
-  <div id="map" class="z-10"><div v-if="loading">Loading...</div></div>
+  <div id="map" class="z-10"></div>
 </template>
 
 <style>
