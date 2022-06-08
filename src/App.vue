@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Map from './components/Map.vue'
+</script>
 
 <template>
   <header class="pt-6">
@@ -14,6 +16,7 @@
       </button>
     </div>
   </header>
+  <Map />
 </template>
 
 <style>
