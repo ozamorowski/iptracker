@@ -3,6 +3,8 @@ import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import { onMounted, ref } from 'vue'
 
+import Loading from './components/Loading.vue'
+
 let map: L.Map
 let inputQuery = ref('')
 let loading = ref(false)
@@ -95,7 +97,8 @@ onMounted(() => {
           >
             IP Address
           </h4>
-          <p class="text-xl font-medium">{{ ipInfo.ip }}</p>
+          <Loading v-if="loading" />
+          <p v-else class="text-xl font-medium">{{ ipInfo.ip }}</p>
         </div>
         <div class="md:border-r-2 border-gray-200 pr-4">
           <h4
@@ -103,7 +106,8 @@ onMounted(() => {
           >
             Location
           </h4>
-          <p class="text-xl font-medium">
+          <Loading v-if="loading" />
+          <p v-else class="text-xl font-medium">
             {{ ipInfo.city }}, {{ ipInfo.region }}, {{ ipInfo.country }}
           </p>
         </div>
@@ -113,7 +117,8 @@ onMounted(() => {
           >
             Timezone
           </h4>
-          <p class="text-xl font-medium">UTC {{ ipInfo.timezone }}</p>
+          <Loading v-if="loading" />
+          <p v-else class="text-xl font-medium">UTC {{ ipInfo.timezone }}</p>
         </div>
         <div class="pr-4">
           <h4
@@ -121,7 +126,8 @@ onMounted(() => {
           >
             ISP
           </h4>
-          <p class="text-xl font-medium">{{ ipInfo.isp }}</p>
+          <Loading v-if="loading" />
+          <p v-else class="text-xl font-medium">{{ ipInfo.isp }}</p>
         </div>
       </section>
     </div>
