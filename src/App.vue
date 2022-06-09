@@ -7,6 +7,7 @@ import IpInfo from './components/IpInfo.vue'
 
 let map: L.Map
 let inputQuery = ref('')
+let lastMarker = ref(L.marker([0, 0]))
 let loading = ref(false)
 let error = ref(false)
 let ipInfo = ref({
@@ -45,7 +46,10 @@ const getIpInfo = async (): Promise<void> => {
 
     ipInfo.value = { ip, isp, timezone, city, region, country }
 
-    L.marker([lat, lng]).addTo(map)
+    if (lastMarker.value) {
+      map.removeLayer(lastMarker.value as unknown as L.Layer)
+    }
+    lastMarker.value = L.marker([lat, lng]).addTo(map)
     map.setView([lat, lng], 13)
 
     loading.value = false
@@ -55,7 +59,8 @@ const getIpInfo = async (): Promise<void> => {
 }
 
 onMounted(() => {
-  map = L.map('map')
+  // Zoom animation couse markers to not saving lat and lng, so it's disabled.
+  map = L.map('map', { zoomAnimation: false })
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
